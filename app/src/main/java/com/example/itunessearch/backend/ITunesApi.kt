@@ -6,8 +6,8 @@ import kotlinx.coroutines.*
 import retrofit2.*
 import retrofit2.converter.gson.GsonConverterFactory
 
-private const val baseUrl = "https://itunes.apple.com/"
 private const val album = "album"
+private const val baseUrl = "https://itunes.apple.com/"
 
 class ITunesApi {
 

@@ -1,4 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="search">Поиск</string>
+    <string name="currentRequestMatchesPrevious">Текущий запрос совпадает с предыдущим</string>
+    <string name="enterAlbumSearch">Введите исполнителя для поиска</string>
+    <string name="noNetworkConnection">Нет подклюечния к сети</string>
+    <string name="albumTitle">Альбом</string>
+    <string name="emptyText">" "</string>
+    <string name="nothingFound">Ничего не найдено</string>
+    <string name="enterAlbumName">Введите название альбома</string>
+    <string name="artistName">Исполнитель</string>
+    <string name="genre">Жанр</string>
+    <string name="trackCount">Количество песен</string>
 </resources>

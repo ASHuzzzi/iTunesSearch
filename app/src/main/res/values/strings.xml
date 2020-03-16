@@ -1,4 +1,14 @@
 <resources>
     <string name="app_name" translatable="false">iTunesSearch</string>
     <string name="search">Search</string>
+    <string name="currentRequestMatchesPrevious">Current request matches previous</string>
+    <string name="enterAlbumSearch">Enter an album to search</string>
+    <string name="noNetworkConnection">No network connection</string>
+    <string name="albumTitle">Album</string>
+    <string name="emptyText">" "</string>
+    <string name="nothingFound">Nothing found</string>
+    <string name="enterAlbumName">Enter album name</string>
+    <string name="artistName">Executor</string>
+    <string name="genre">Genre</string>
+    <string name="trackCount">Track count</string>
 </resources>
