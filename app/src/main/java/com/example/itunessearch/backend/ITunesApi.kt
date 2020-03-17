@@ -8,6 +8,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 private const val album = "album"
 private const val baseUrl = "https://itunes.apple.com/"
+private const val resultSize = 30
 
 class ITunesApi {
 
@@ -20,7 +21,7 @@ class ITunesApi {
         retrofit.create(ITunesService::class.java)
     }
 
-    suspend fun getDiscography(author: String, resultSize: Int): Discography {
+    suspend fun getDiscography(author: String): Discography {
         var discography = Discography()
         withContext(Dispatchers.IO) {
             val searchResponse =  iTunesService.getDiscography(author, resultSize, album).await()

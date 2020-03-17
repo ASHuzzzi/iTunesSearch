@@ -9,98 +9,113 @@
         android:id="@+id/albumTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/mediumIndent"
+        android:paddingHorizontal="@dimen/mediumIndent"
         android:text="@string/emptyText"
+        android:textStyle="bold"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/imageArtwork"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/mediumIndent"
         android:contentDescription="@string/albumTitle"
         android:scaleType="centerCrop"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/albumTitle"
-        app:srcCompat="@drawable/ic_launcher_foreground" />
+        app:srcCompat="@android:drawable/ic_menu_gallery" />
 
     <LinearLayout
-        android:id="@+id/layoutArtistName"
+        android:id="@+id/layoutAlbumProperty"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="3dp"
-        android:orientation="horizontal"
+        android:orientation="vertical"
+        android:layout_marginVertical="@dimen/largeIndent"
+        android:paddingHorizontal="@dimen/mediumIndent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/imageArtwork">
+        app:layout_constraintTop_toBottomOf="@id/imageArtwork"
+        app:srcCompat="@drawable/ic_launcher_foreground">
 
-        <TextView
-            android:id="@+id/artistNameTitle"
+        <LinearLayout
+            android:id="@+id/layoutArtistName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="3"
-            android:gravity="center_horizontal"
-            android:text="@string/artistName" />
+            android:orientation="horizontal"
+            android:layout_marginBottom="@dimen/smallIndent">
 
-        <TextView
-            android:id="@+id/artistName"
+            <TextView
+                android:id="@+id/artistNameTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:textAppearance="@style/TextTitle"
+                android:gravity="center_vertical"
+                android:text="@string/artistName" />
+
+            <TextView
+                android:id="@+id/artistName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="@string/emptyText" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layoutGenre"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/emptyText" />
-    </LinearLayout>
+            android:orientation="horizontal"
+            android:layout_marginBottom="@dimen/smallIndent">
 
-    <LinearLayout
-        android:id="@+id/layoutGenre"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="3dp"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/layoutArtistName">
+            <TextView
+                android:id="@+id/genreTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:textAppearance="@style/TextTitle"
+                android:gravity="center_vertical"
+                android:text="@string/genre" />
 
-        <TextView
-            android:id="@+id/genreTitle"
+            <TextView
+                android:id="@+id/genre"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="@string/emptyText" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layoutTrackCount"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="3"
-            android:gravity="center_horizontal"
-            android:text="@string/genre" />
+            android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/genre"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/emptyText" />
-    </LinearLayout>
+            <TextView
+                android:id="@+id/trackCountTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:textAppearance="@style/TextTitle"
+                android:gravity="center_vertical"
+                android:text="@string/trackCount" />
 
-    <LinearLayout
-        android:id="@+id/layoutTrackCount"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="3dp"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/layoutGenre">
+            <TextView
+                android:id="@+id/trackCount"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="@string/emptyText" />
+        </LinearLayout>
 
-        <TextView
-            android:id="@+id/trackCountTitle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="3"
-            android:gravity="center_horizontal"
-            android:text="@string/trackCount" />
-
-        <TextView
-            android:id="@+id/trackCount"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/emptyText" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="smallIndent">5dp</dimen>
+    <dimen name="mediumIndent">10dp</dimen>
+    <dimen name="largeIndent">20dp</dimen>
+
+
+</resources>

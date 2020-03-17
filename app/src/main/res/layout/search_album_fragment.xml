@@ -12,8 +12,11 @@
         android:id="@+id/layoutSearchRequest"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/mediumIndent"
+        android:layout_marginTop="@dimen/mediumIndent"
         android:orientation="horizontal"
-        android:layout_margin="5dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <EditText
@@ -40,6 +43,8 @@
         android:id="@+id/recyclerSearchResult"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginVertical="@dimen/largeIndent"
+        android:paddingHorizontal="@dimen/mediumIndent"
         android:layoutAnimation="@anim/layout_animation_fall_down"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -55,7 +60,7 @@
         android:layout_height="0dp"
         android:orientation="vertical"
         android:visibility="gone"
-        android:background="#7fffffff"
+        android:background="@color/colorTranslucentWhite"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

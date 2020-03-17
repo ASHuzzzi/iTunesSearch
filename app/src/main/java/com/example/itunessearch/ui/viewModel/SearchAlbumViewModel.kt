@@ -16,12 +16,13 @@ class SearchAlbumViewModel(application: Application) : AndroidViewModel(applicat
     private val connectionStatus: MutableLiveData<Boolean> = MutableLiveData()
     private val searchResult : MutableLiveData<Discography> = MutableLiveData()
 
+    private var searchRequest  = ""
     private var lastSearchRequest: String  = ""
 
-    fun setSearchDiscography(searchRequest: String, resultSize: Int) {
+    fun setSearchDiscography(searchRequest: String) {
         coroutine.launch {
             lastSearchRequest = searchRequest
-            discography =  ITunesApi().getDiscography(searchRequest, resultSize)
+            discography =  ITunesApi().getDiscography(searchRequest)
             searchResult.postValue(discography)
         }
     }
@@ -36,8 +37,14 @@ class SearchAlbumViewModel(application: Application) : AndroidViewModel(applicat
     fun getNetworkStatus() = connectionStatus
     fun getSearchResult() = searchResult
 
-    fun checkSearchRequestingRepeat(searchRequest: String): Boolean {
-        return lastSearchRequest == searchRequest
+    fun setSearchRequest(searchRequest: String) {
+        this.searchRequest = searchRequest
+    }
+
+    fun getSearchRequest() = searchRequest
+
+    fun checkRepeatRequest(): Boolean {
+        return lastSearchRequest.trim() == searchRequest.trim()
     }
 
     fun getAlbumItem(positionInDiscography: Int) = discography.albumList[positionInDiscography]

@@ -1,7 +1,8 @@
 package com.example.itunessearch.ui.fragments
 
+import android.content.res.Configuration
 import android.os.Bundle
-import android.util.Log
+import android.util.DisplayMetrics
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,6 +13,7 @@ import com.example.itunessearch.R
 import com.example.itunessearch.items.AlbumItem
 import com.example.itunessearch.ui.viewModel.AlbumDetailViewModel
 import kotlinx.android.synthetic.main.album_detail_fragment.*
+import kotlin.math.roundToInt
 
 class AlbumDetailFragment: Fragment() {
 
@@ -39,13 +41,33 @@ class AlbumDetailFragment: Fragment() {
         return view
     }
 
+    override fun onStart() {
+        super.onStart()
+        val imageSideSize = getImageViewSize()
+        imageArtwork.layoutParams.height = imageSideSize
+        imageArtwork.layoutParams.width = imageSideSize
+        Glide.with(this).load(viewModel.getAlbumItem().artworkUrl).into(imageArtwork)
+    }
+
     override fun onResume() {
         super.onResume()
         albumTitle.text = viewModel.getAlbumItem().collectionName
         artistName.text = viewModel.getAlbumItem().artistName
         genre.text = viewModel.getAlbumItem().genre
         trackCount.text = viewModel.getAlbumItem().trackCount
-        Glide.with(this).load(viewModel.getAlbumItem().artworkUrl).into(imageArtwork)
-        Log.i(bundleTag, viewModel.getAlbumItem().collectionName)
+    }
+
+    private fun getImageViewSize(): Int {
+        val ratioForView = 0.4
+        val orientation = requireActivity().resources.configuration.orientation
+        val displayMetrics = DisplayMetrics()
+        requireActivity().windowManager.defaultDisplay.getMetrics(displayMetrics)
+        val screenSide =
+            if (orientation == Configuration.ORIENTATION_PORTRAIT) {
+                displayMetrics.widthPixels
+            } else {
+                displayMetrics.heightPixels
+            }
+        return (screenSide * ratioForView).roundToInt()
     }
 }

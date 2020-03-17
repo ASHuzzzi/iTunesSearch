@@ -16,7 +16,7 @@ import com.example.itunessearch.R
 import com.example.itunessearch.items.Discography
 import com.example.itunessearch.ui.viewModel.SearchAlbumViewModel
 import com.example.itunessearch.ui.adapter.SearchResultAdapter
-import kotlinx.android.synthetic.main.main_fragment.*
+import kotlinx.android.synthetic.main.search_album_fragment.*
 
 class SearchAlbumFragment : Fragment() {
 
@@ -34,7 +34,7 @@ class SearchAlbumFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        return inflater.inflate(R.layout.main_fragment, container, false)
+        return inflater.inflate(R.layout.search_album_fragment, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -52,8 +52,9 @@ class SearchAlbumFragment : Fragment() {
             val inputMethodManager =
                 requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
             inputMethodManager.hideSoftInputFromWindow(view?.windowToken, 0)
-            if (editTextSearch.text.trim().isNotEmpty()) {
-                if (!viewModel.checkSearchRequestingRepeat(editTextSearch.text.toString())) {
+            viewModel.setSearchRequest(editTextSearch.text.toString())
+            if (viewModel.getSearchRequest().trim().isNotEmpty()) {
+                if (!viewModel.checkRepeatRequest()) {
                     layoutProgress.visibility = View.VISIBLE
                     viewModel.checkNetwork()
                 } else {
@@ -66,9 +67,7 @@ class SearchAlbumFragment : Fragment() {
 
         viewModel.getNetworkStatus().observe(viewLifecycleOwner, Observer { haveConnection ->
             if (haveConnection) {
-                if (!viewModel.checkSearchRequestingRepeat(editTextSearch.text.toString())) {
-                    viewModel.setSearchDiscography(editTextSearch.text.toString(), 20)
-                }
+                viewModel.setSearchDiscography(viewModel.getSearchRequest())
             } else {
                 showShortToast(resources.getString(R.string.noNetworkConnection))
             }
@@ -99,7 +98,6 @@ class SearchAlbumFragment : Fragment() {
 
     fun openAlbumDetailFragment(selectedPositionInAdapter: Int) {
         val albumItem = viewModel.getAlbumItem(selectedPositionInAdapter)
-        showShortToast(albumItem.collectionName)
         val fragmentTransaction = requireActivity().supportFragmentManager.beginTransaction()
         fragmentTransaction
             .replace(R.id.container, AlbumDetailFragment.newInstance(albumItem))
